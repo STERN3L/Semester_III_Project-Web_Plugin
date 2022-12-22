@@ -2,6 +2,19 @@
 
 Web security packets plugin
 
+## Description
+
+Web security packets plugin
+
+
+## Badges
+
+Adding some badges.
+
+## Visuals
+
+Picture / Video of our project.
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
@@ -12,18 +25,15 @@ pip install foobar
 
 ## Usage
 
-```python
-import foobar
 
-# returns 'words'
-foobar.pluralize('word')
-
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
 ```
+pyhton3 hacker.py -l "nasa.com"
+```
+
+## Roadmap
+
+If you have ideas for releases in the future, it is a good idea to list.
+
 
 ## Contributing
 
@@ -32,6 +42,21 @@ to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+## Authors and acknowledgment
+
+This project is developed by :
+- BAZAIN Danyil
+- BINAND Nicolas
+- MITTA Chems
+- JEAN Maxime
+
+
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+This is a private project for EPITA
+\
+All rights reserved
+
+## Project status
+
+Currently the project is underway.
