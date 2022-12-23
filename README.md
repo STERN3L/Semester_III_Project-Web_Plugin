@@ -48,7 +48,7 @@ This project is developed by :
 - BAZAIN Danyil
 - BINAND Nicolas
 - MITTA Chems
-- JEAN Maxime
+- JAEN Maxime
 
 
 ## License
