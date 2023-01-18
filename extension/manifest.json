@@ -1,0 +1,16 @@
+{
+  "description": "Utilisation de webRequestsBlocking pour interrompre une requête vers un site web.",
+  "manifest_version": 2,
+  "name": "Plugin Sécurité Web",
+  "version": "1.0",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
