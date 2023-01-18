@@ -1,4 +1,4 @@
-#Install Mosquitto Broker
+## Install Mosquitto Broker
 
 ```bash
 sudo apt install mosquitto mosquitto-clients
@@ -12,10 +12,10 @@ mosquitto -p 8080 -v
 
 ```
 
-##Launch
+## Launch
 
 1) run "make"
 
 2) ./server => Server wait requests
 
-3) ./clienTester www.vinted.com => Ask if www.vinted.com is a phishing site
+3) ./clientTester www.vinted.com => Ask if www.vinted.com is a phishing site
