@@ -16,6 +16,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 		exit(-1);
 	}
 	mosquitto_subscribe(mosq, NULL, "request/+", 0); // Subscribe to all topics starting with "request/" whatever the ID
+  printf("Sub to channel");
 }
 
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg) {
@@ -44,11 +45,11 @@ char * get_response_topic(char * topic){
 int is_on_db(struct mosquitto *mosq,char * string,char * topic){
   // Return 1 if in db else 0 => Change by calling the func who check in the db
 
-  char * db[]={"www.google.fr","www.facebook.fr","www.youtube.com"}; // Test list => REPLACE BY DB
+  char * db[]={"localhost/","www.facebook.com","youtube.com","upload.wikimedia.org"}; // Test list => REPLACE BY DB
   char *response_topic=get_response_topic(topic);
 
 
-  for(int i=0;i<=2;i++){
+  for(int i=0;i<=3;i++){
     if(strstr(db[i],string)){
       mosquitto_publish(mosq, NULL, response_topic,1,"1",0,false); // Publish 1 if found
       printf("Founded !\nPub in %s\n--------------\n",response_topic);
@@ -74,7 +75,7 @@ int main() {
 	mosquitto_connect_callback_set(mosq, on_connect); // When connected to the broker
 	mosquitto_message_callback_set(mosq, on_message); // All messages go trough on_message
 	
-	rc = mosquitto_connect(mosq, "localhost", 8080, 10); 
+	rc = mosquitto_connect(mosq, "broker.hivemq.com", 1883, 10); 
 	if(rc) {
 		printf("Could not connect to Broker with return code %d\n", rc);
 		return -1;
