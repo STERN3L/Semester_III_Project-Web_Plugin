@@ -33,6 +33,9 @@ for line in text.split('\n'):
         Bline = Aline[1]
         Cline = Bline.split("/", 1)
         line = Cline[0]
+        if "www." in line :
+            Atext = line.split("www.", 1)
+            line = Atext[1]
         if line not in File:
             print("[+] Line not in txt file, we can add it ! The line is : ",line)
             ListeSite.append(line)
@@ -42,6 +45,7 @@ print("[-] ",y," Line already in txt file !")
         
 FileRead.close()
 
+ListeSite = sorted(ListeSite)
 
 FileWrite = open("phising_site.txt","a")
 
