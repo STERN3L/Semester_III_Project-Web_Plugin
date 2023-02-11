@@ -12,6 +12,8 @@ text = soup.prettify()
 ListeSite = []
 
 
+i = 0
+y = 0
 
 # LIRE DE FICHIER
 FileRead = open("phising_site.txt","r")
@@ -24,11 +26,19 @@ for FileLine in contenu.split('\n'):
 
 
 for line in text.split('\n'):
-    if line not in File:
-        print("[+] Line not in txt file, we can add it ! The line is : ",line)
-        ListeSite.append(line)
+    if len(line) == 0:
+        pass
     else:
-        print("[-] Already in txt file ! The line is : ",line)
+        Aline = line.split("://", 1)
+        Bline = Aline[1]
+        Cline = Bline.split("/", 1)
+        line = Cline[0]
+        if line not in File:
+            print("[+] Line not in txt file, we can add it ! The line is : ",line)
+            ListeSite.append(line)
+        else:
+            y = y + 1
+print("[-] ",y," Line already in txt file !")
         
 FileRead.close()
 
@@ -38,7 +48,8 @@ FileWrite = open("phising_site.txt","a")
 for final in ListeSite :
     final += '\n'
     FileWrite.write(final)
-    print("[+] Line ",final," is add in the txt file !")
+    i = i+1
+print("[+] ",i,"Line added in the txt file !")
 
 
 
