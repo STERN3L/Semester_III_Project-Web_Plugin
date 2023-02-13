@@ -7,10 +7,33 @@ Usage::
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
+import fcntl
+import termios
+from sys import argv
+from subprocess import check_output
+
+def get_pid():
+    return check_output(["pidof","dico"])
+
 
 def isonlist(domain):
-    domains=['youtube.com','vinted.com']
-    return 0 if domain not in domains else 1
+
+    pid=get_pid().decode('utf-8').strip()
+    if pid is None:
+        return -1
+
+    with open(f'/proc/{pid}/fd/0', 'w') as fd:
+        for char in domain+"\n":
+            fcntl.ioctl(fd, termios.TIOCSTI, char)
+
+    f=open("../phising_website_grapper/history.txt","r").read().splitlines()
+    if domain+"=1" in f:
+        return 1
+    elif domain+"=0" in f:
+        return 0
+    else:
+        return -2
+
 
 class S(BaseHTTPRequestHandler):
     def _set_response(self):
@@ -58,9 +81,8 @@ def run(server_class=HTTPServer, handler_class=S, port=8080):
     logging.info('Stopping httpd...\n')
 
 if __name__ == '__main__':
-    from sys import argv
 
-    if len(argv) == 2:
+    if(len(argv)==2):
         run(port=int(argv[1]))
     else:
         run()

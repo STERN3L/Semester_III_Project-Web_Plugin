@@ -15,7 +15,7 @@ void on_connect(struct mosquitto *mosq, void *obj, int rc) {
 		printf("Error with result code: %d\n", rc);
 		exit(-1);
 	}
-	mosquitto_subscribe(mosq, NULL, "request/+", 0); // Subscribe to all topics starting with "request/" whatever the ID
+	mosquitto_subscribe(mosq, NULL, "request/34/+", 0); // Subscribe to all topics starting with "request/" whatever the ID
   printf("Sub to channel");
 }
 

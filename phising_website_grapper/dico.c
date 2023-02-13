@@ -154,6 +154,29 @@ void print_table(hashtable_t *hashtable)
 }
 
 
+int writeFile(int IsPhishing,char * txt){
+
+	FILE *fptr;
+
+   fptr = fopen("history.txt","a");
+
+   if(fptr == NULL)
+   {
+      printf("Error!");   
+      exit(1);             
+   }
+
+   if (IsPhishing){
+   	fprintf(fptr,"%s=0\n",txt);
+   }
+   else{
+   	fprintf(fptr,"%s=1\n",txt);
+   }
+   //fprintf(fptr,"%s",txt);
+   fclose(fptr);
+   return 0;
+}
+
 int main() {
 
   printf("[/!\\] Enter a domain name and check if it is already listed as a phising site.\n");
@@ -162,7 +185,7 @@ int main() {
 
   // Create an integer variable that will store the number we get from the user
   char myDomain[50];
-  char* Bool = "True";
+  int Bool = 1;
 
   //Open file
   FILE *f;
@@ -199,21 +222,24 @@ int main() {
         printf("[-] Unable to open the file\n");
     }
 
-  while (Bool == "True")
+  while (Bool == 1)
     {
       printf("[/!\\] Enter a domain name : \n"); 
       scanf("%s", myDomain);
       if (strcmp(myDomain,"quit") == 0){
         printf("[/!\\] You leave the programm !");
-        Bool = "False";
+        Bool = 0;
       }
       else{
           
         if (ht_get( hashtable, myDomain ) != NULL){
           printf("[+] The site : %s is a phising site\n", myDomain);
+		  writeFile(0, myDomain);
         }
         else{
           printf("[-] The site : %s isn't a phising site\n", myDomain);
+		  writeFile(1, myDomain);
+
         }
       }
     }
