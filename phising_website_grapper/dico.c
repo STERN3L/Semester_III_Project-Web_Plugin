@@ -203,7 +203,7 @@ int main() {
   char chaine[TAILLE_MAX] = "";
 
   //initilisation de la hash table
-  hashtable_t *hashtable = ht_create( 65536 );
+  hashtable_t *hashtable = ht_create( 665536 );
     
   fichier = fopen("phising_site.txt", "rb"); //ouverture du .txt en binaire pour lire les caractères spéciaux
 
