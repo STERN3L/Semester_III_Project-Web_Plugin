@@ -45,13 +45,14 @@ hashtable_t *ht_create( int size ) {
 	return hashtable;	
 }
 
+/*Take 2 argument : struct hashtable and pointer to a string*/
 int ht_hash( hashtable_t *hashtable, char *key ) {
 
 	unsigned long int hashval;
 	int i = 0;
 
 	/* Convert our string to an integer */
-	while( hashval < ULONG_MAX && i < strlen( key ) ) {
+	while( hashval < ULONG_MAX && i < strlen( key ) ) {                                            /*either hashval reaches the maximum value of an unsigned long integer, or i reaches the length of the string key.*/
 		hashval = hashval << 8;
 		hashval += key[ i ];
 		i++;
