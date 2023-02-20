@@ -1,4 +1,14 @@
+## In this repo : 
+
+Basic conf for MQTT server.
+
+- clientTester.c -> MQTT client in C for tests
+- server.c -> Simple MQTT server who responds 1 or 0.
+
+
+
 ## Install Mosquitto Broker
+
 
 ```bash
 sudo apt install mosquitto mosquitto-clients

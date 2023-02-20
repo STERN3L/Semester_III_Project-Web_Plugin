@@ -1,18 +1,16 @@
 console.log("Ajout de l'extension dans le navigateur");
 
-//TODO FAIRE EN SORTE QUE LES REQUETES SOIENT SYNCHRO AVEC LES REPONSES MQTT
-
 
 var connected_flag = 0;	
 var mqtt;
 var reconnectTimeout = 2000;
-var host = 'broker.hivemq.com';
+var host = 'broker.hivemq.com'; // hivemq broker for test over the internet
 var port = 8000;
-var sub_topic = 'response/15';
+var sub_topic = 'response/15'; // Client number (Random one should be used in prod)
 
 
 var let_go=-1;
-function onConnectionLost()
+function onConnectionLost() 
 {
   console.log("Connection lost");
   connected_flag = 0;
@@ -49,7 +47,7 @@ function onConnect()
 
 function MQTTconnect() 
 {
-	var x = Math.floor(Math.random() * 10000); 
+	var x = Math.floor(Math.random() * 10000);  
 	var cname = 'web' + x;
 	mqtt = new Paho.MQTT.Client(host, port, cname);
 	var options ={timeout: 3, onSuccess: onConnect, onFailure: onFailure};
@@ -94,10 +92,10 @@ function cancel(requestDetails) {
     if(let_go==1){
       console.log("Cancel : " + requestDetails.url);
       let_go=-1;
-      return {cancel: true};
+      return {cancel: true}; //Block the request
     }if (let_go==0){
       let_go=-1;
-      return {cancel: false};
+      return {cancel: false}; // Do not block the request
     }
   
   }
@@ -110,6 +108,6 @@ function cancel(requestDetails) {
 
 browser.webRequest.onBeforeRequest.addListener(
   cancel,
-  {urls: ["*://*/*"]},
+  {urls: ["*://*/*"]}, // Match URL with this pattern and go to "cancel" with the matched url
   ["blocking"]
 );
