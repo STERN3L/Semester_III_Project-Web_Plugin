@@ -53,9 +53,9 @@ cd phising_website_grapper && ./dico
 
 You're done !
 
-L'extension va intercepter votre requête et l'envoyer au serveur web qui va appeler "dico" pour vérifier si le site est blacklisté ou pas. Le serveur http renverra donc la réponse et votre extension agira en conséquence.
+The extension will intercept your request and send it to the web server, which will call "dico" to check whether the site is blacklisted or not. The http server will then return the answer and your extension will act accordingly.
 
-Les sites considérés comme des sites de phishing sont dans phising_website_grapper/phising_site.txt
+Sites considered as phishing sites are listed in phising_website_grapper/phising_site.txt
 
 ## Authors and acknowledgment
 
